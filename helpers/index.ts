@@ -1,4 +1,4 @@
-import {AuditType, FilterType} from "../pages/administration/types";
+import FilterType, {AuditType} from "../pages/administration/types";
 
 export function isEmpty(obj = {}) {
     return Object.keys(obj).length === 0
@@ -6,16 +6,17 @@ export function isEmpty(obj = {}) {
 
 export function filterRows(rows: AuditType[], filterData: FilterType) {
     if (isEmpty(filterData)) return rows;
+    const {actionType, applicationType, applicationId,startDate,  endDate } = filterData;
 
     return rows.filter((row) => {
         const date = new Date(row.creationTimestamp);
-        const start = new Date(filterData.startDate);
-        const end = new Date(filterData.endDate);
+        const start = new Date(startDate);
+        const end = new Date(endDate);
 
-        return (!filterData.actionType || row.actionType === filterData.actionType ) &&
-            (!filterData.applicationType || row.applicationType === filterData.applicationType) &&
-            (!filterData.applicationId || String(row.applicationId).includes(filterData.applicationId)) &&
-            (!filterData.startDate || start <= date) &&
-            (!filterData.endDate || end >= date)
+        return (!actionType || row.actionType === actionType ) &&
+            (!applicationType || row.applicationType === applicationType) &&
+            (!applicationId || String(row.applicationId).includes(applicationId)) &&
+            (!startDate || start <= date) &&
+            (!endDate || end >= date)
     })
 }

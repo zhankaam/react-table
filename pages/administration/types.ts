@@ -11,6 +11,8 @@ export interface Props {
     auditLogs: AuditType[];
 }
 
-export type FilterType = Record<'actionType' | 'applicationType' | 'startDate' | 'endDate' | 'applicationId', string>;
+type FilterType = Record<'actionType' | 'applicationType' | 'startDate' | 'endDate' | 'applicationId', string>;
 
 export const PAGE_SIZE = 10;
+
+export default FilterType;

@@ -6,10 +6,10 @@ const TableContainer = styled("div", {
     flexDirection: 'column'
 });
 
-const Title = styled("div", {
+export const Title = styled("div", {
     textAlign: 'center',
     fontSize: '20px',
     marginTop: '20px'
 })
 
-export { TableContainer, Title };
+export default TableContainer;
