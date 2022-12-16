@@ -1,12 +1,12 @@
-import {PAGE_SIZE, Props} from "./types";
+import {PAGE_SIZE, Props} from "../../helpers/types";
 import React, {useCallback, useMemo, useState} from "react";
 import FilterBar from "../../components/FilterBar";
 import Table from "../../components/Table";
 import Pagination from "../../components/Pagination";
 import {filterRows} from "../../helpers";
 
-import TableContainer from "./styled";
-import columns from "./configs";
+import { columns } from "../../helpers/configs";
+import * as S from "../../styles/styled";
 
 function LoggerSearch({auditLogs}: Props) {
     const [rows, setRows] = useState(auditLogs)
@@ -57,7 +57,7 @@ function LoggerSearch({auditLogs}: Props) {
                 handleSearch={handleSearch}
                 clearAll={clearAll}
             />
-            <TableContainer>
+            <S.TableContainer>
                 <Table data={calculatedRows} columns={columns}/>
                 <Pagination
                     totalItemsCount={rows.length}
@@ -65,7 +65,7 @@ function LoggerSearch({auditLogs}: Props) {
                     pageSize={PAGE_SIZE}
                     onPageChanged={page => setCurrentPage(page)}
                 />
-            </TableContainer>
+            </S.TableContainer>
 
         </>
     );

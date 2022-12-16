@@ -1,5 +1,5 @@
 import React, {Dispatch, memo, SetStateAction, useCallback} from "react";
-import FilterType from "../../pages/administration/types";
+import FilterType from "../../helpers/types";
 
 import Select from "../Select";
 import Input from "../TextField";

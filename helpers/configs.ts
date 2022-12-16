@@ -1,8 +1,7 @@
-import React from "react";
-import { IColumnType } from "../../components/Table/types";
+import { IColumnType } from "../components/Table/types";
 import { AuditType } from "./types";
 
-const columns: IColumnType<AuditType>[] = [
+export const columns: IColumnType<AuditType>[] = [
     {
         field: "logId",
         title: "Log ID",
@@ -28,5 +27,3 @@ const columns: IColumnType<AuditType>[] = [
         title: "Date: Time",
     },
 ];
-
-export default columns;

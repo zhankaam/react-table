@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Title } from "./administration/styled";
+import { Title } from "../styles/styled";
 
 function Home() {
     return (
