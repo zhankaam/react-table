@@ -1,5 +1,5 @@
 import React from "react";
-import { IColumnType } from "../components/Table/types";
+import { IColumnType } from "../../components/Table/types";
 import { AuditType } from "./types";
 
 export const columns: IColumnType<AuditType>[] = [

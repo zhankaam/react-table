@@ -1,4 +1,4 @@
-import {AuditType, FilterType} from "../pages/types";
+import {AuditType, FilterType} from "../pages/administration/types";
 
 export function isEmpty(obj = {}) {
     return Object.keys(obj).length === 0
