@@ -5,8 +5,8 @@ export function isEmpty(obj = {}) {
 }
 
 export function filterRows(rows: AuditType[], filterData: FilterType) {
-    if (isEmpty(filterData)) return rows;
-    const {actionType, applicationType, applicationId,startDate,  endDate } = filterData;
+    if (isEmpty(filterData) || !rows.length) return rows;
+    const {actionType, applicationType, applicationId, startDate, endDate } = filterData;
 
     return rows.filter((row) => {
         const date = new Date(row.creationTimestamp);
