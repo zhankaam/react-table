@@ -7,11 +7,11 @@ export function isEmpty(obj = {}) {
 export function filterRows(rows: AuditType[], filterData: FilterType) {
   if (isEmpty(filterData) || !rows.length) return rows;
   const { actionType, applicationType, applicationId, startDate, endDate } = filterData;
+  const start = new Date(startDate || '');
+  const end = new Date(endDate || '');
 
   return rows.filter(row => {
     const date = new Date(row.creationTimestamp);
-    const start = new Date(startDate || '');
-    const end = new Date(endDate || '');
 
     return (
       (!actionType || row.actionType === actionType) &&
