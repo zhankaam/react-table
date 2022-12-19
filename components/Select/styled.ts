@@ -15,13 +15,14 @@ const Select = styled('div', {
 
 const Option = styled('div', {
   minWidth: '180px',
-  minHeight: '36px',
+  minHeight: '30px',
   textAlign: 'center',
 
   '&:hover': {
     color: '$white',
     backgroundColor: '$blue',
     transition: 'all 0.2s ease-in-out',
+    verticalAlign: 'middle',
   },
 });
 

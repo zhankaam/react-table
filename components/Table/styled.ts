@@ -45,6 +45,7 @@ const SortButton = styled('button', {
   background: 'none repeat scroll 0 0 transparent',
   border: 'medium none',
   verticalAlign: 'inherit',
+  cursor: 'pointer',
 
   '& svg': {
     height: 20,

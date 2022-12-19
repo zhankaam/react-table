@@ -2,12 +2,24 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Install modules with
+
+```bash
+pnpm install
+```
+
 First, run the development server:
 
 ```bash
 pnpm run dev
 # or
 pnpm dev
+```
+
+The project's test command:
+
+```bash
+pnpm run test
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

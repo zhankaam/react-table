@@ -14,6 +14,7 @@ const Container = styled('div', {
 
 const PageNumber = styled('span', {
   padding: '4px',
+  cursor: 'pointer',
 
   variants: {
     isActive: {
