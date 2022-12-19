@@ -10,8 +10,8 @@ export function filterRows(rows: AuditType[], filterData: FilterType) {
 
   return rows.filter(row => {
     const date = new Date(row.creationTimestamp);
-    const start = new Date(startDate);
-    const end = new Date(endDate);
+    const start = new Date(startDate || '');
+    const end = new Date(endDate || '');
 
     return (
       (!actionType || row.actionType === actionType) &&

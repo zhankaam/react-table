@@ -1,8 +1,10 @@
-import { PAGE_SIZE, Props } from '../../helpers/types';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
+import { queryTypes, useQueryState } from 'next-usequerystate';
 import FilterBar from '../../components/FilterBar';
 import Table from '../../components/Table';
 import Pagination from '../../components/Pagination';
+import { PAGE_SIZE, Props } from '../../helpers/types';
 import { filterRows } from '../../helpers';
 
 import { columns } from '../../helpers/configs';
@@ -10,12 +12,13 @@ import * as S from '../../styles/styled';
 
 function LoggerSearch({ auditLogs }: Props) {
   const [rows, setRows] = useState(auditLogs);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [actionType, setActionType] = useState('');
-  const [applicationType, setApplicationType] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [currentPage, setCurrentPage] = useQueryState('page', queryTypes.integer.withDefault(1));
+  const [actionType, setActionType] = useQueryState('actionType', queryTypes.string.withDefault(''));
+  const [applicationType, setApplicationType] = useQueryState('applicationType', queryTypes.string.withDefault(''));
+  const [startDate, setStartDate] = useQueryState('startDate', queryTypes.string.withDefault(''));
+  const [endDate, setEndDate] = useQueryState('endDate', queryTypes.string.withDefault(''));
   const [applicationId, setApplicationId] = useState('');
+  const router = useRouter();
 
   const handleSearch = useCallback(() => {
     const filter = { actionType, applicationType, startDate, endDate, applicationId };
@@ -31,15 +34,26 @@ function LoggerSearch({ auditLogs }: Props) {
     return rows.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, rows]);
 
-  const clearAll = useCallback(() => {
-    setCurrentPage(1);
-    setActionType('');
-    setApplicationType('');
-    setStartDate('');
-    setEndDate('');
-    setApplicationId('');
+  const clearAll = useCallback(async () => {
+    actionType && (await setActionType('', { shallow: true }));
+
+    applicationType && (await setApplicationType('', { shallow: true }));
+
+    startDate && (await setStartDate('', { shallow: true }));
+
+    endDate && (await setEndDate('', { shallow: true }));
+
+    applicationId && setApplicationId('');
+
+    await router.replace({}, undefined, { shallow: true });
+
+    await setCurrentPage(1);
     setRows(auditLogs);
-  }, [auditLogs]);
+  }, [auditLogs, actionType, applicationType, startDate, endDate, applicationId]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, []);
 
   return (
     <>
